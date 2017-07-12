@@ -1,0 +1,19 @@
+$(function(){
+	$("#denglu").click(function(){
+		if(($("#userName").val() && $("#userPass").val())==""){
+			$(".div01").css("dispaly","none");
+		}
+		$("#userName").focus(function(){
+			$(".div01").css("dispaly","none");
+		});
+		$.post("php/p1p.php",{user:$("#userName").val(),userPass:$("#userPass").val()},function(data){
+			if(data=="0"){
+				saveCookie("user",$("#userName").val(),5);
+				location.href="zhu.html";
+			}else{
+				$(".div01").css("display","block");
+				$("#shuchu").html("账号和密码不匹配，请重新输入");
+			}
+		});
+	});
+});
